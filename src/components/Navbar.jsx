@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { Menu, X } from 'lucide-react';
+import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // Temporary auth state for demo - replace with your auth context
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const user = {
-    name: 'John Doe',
-    photoURL: 'https://placekitten.com/40/40',
-  };
+  const { user, logoutUser } = useAuth();
 
   return (
     <nav className='bg-white shadow-sm'>
@@ -37,7 +33,7 @@ const Navbar = () => {
             >
               Available Foods
             </Link>
-            {isLoggedIn && (
+            {user?.email && (
               <>
                 <Link
                   to='/add-food'
@@ -59,7 +55,7 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            {!isLoggedIn ? (
+            {!user ? (
               <div className='flex items-center space-x-4'>
                 <Link
                   to='/login'
@@ -82,7 +78,7 @@ const Navbar = () => {
                   className='w-8 h-8 rounded-full'
                 />
                 <button
-                  onClick={() => setIsLoggedIn(false)}
+                  onClick={() => logoutUser()}
                   className='text-gray-700 hover:text-green-600'
                 >
                   Logout
@@ -125,7 +121,7 @@ const Navbar = () => {
             >
               Available Foods
             </Link>
-            {isLoggedIn && (
+            {user?.email && (
               <>
                 <Link
                   to='/add-food'
@@ -150,7 +146,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={() => {
-                    setIsLoggedIn(false);
+                    logoutUser();
                     setIsOpen(false);
                   }}
                   className='block w-full text-left text-gray-700 hover:text-green-600 px-3 py-2'
@@ -159,7 +155,7 @@ const Navbar = () => {
                 </button>
               </>
             )}
-            {!isLoggedIn && (
+            {!user && (
               <>
                 <Link
                   to='/login'
