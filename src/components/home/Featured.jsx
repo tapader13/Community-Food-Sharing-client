@@ -18,8 +18,8 @@ const Featured = () => {
   }, []);
 
   return (
-    <div className='container mx-auto p-4'>
-      <h2 className='text-2xl font-bold text-center mb-6'>
+    <div className='w-11/12 mx-auto p-4'>
+      <h2 className='text-3xl mt-6 font-bold text-left mb-6'>
         <span className='text-green-600'>Featured</span>{' '}
         <span className='text-gray-800'>Foods</span>
       </h2>
@@ -27,24 +27,23 @@ const Featured = () => {
         {featuredFoods.map((food, index) => (
           <div
             key={index}
-            className='border rounded-lg shadow-md overflow-hidden bg-white'
+            className='border rounded-lg shadow-md overflow-hidden bg-white relative'
           >
             <img
               src={food.foodImage}
               alt={food.foodName}
-              className='w-full h-40 object-cover'
+              className='w-full h-80 object-cover'
             />
-            <div className='p-4'>
-              <h3 className='text-lg font-semibold text-gray-800'>
-                {food.foodName}
-              </h3>
-              <p className='text-gray-600'>Quantity: {food.foodQuantity} kg</p>
-              <p className='text-gray-600'>Location: {food.pickupLocation}</p>
-              <p className='text-gray-600 text-sm'>
+            <div className='bg-gray-800 opacity-50 absolute top-0 left-0 w-full h-full'></div>
+            <div className='p-4 absolute bottom-0 left-0 w-full'>
+              <h3 className='text-xl font-bold text-white'>{food.foodName}</h3>
+              <p className='text-zinc-200'>Quantity: {food.foodQuantity} kg</p>
+              <p className='text-zinc-200'>Location: {food.pickupLocation}</p>
+              <p className='text-zinc-200 text-sm'>
                 Expiry: {new Date(food.expiryDate).toLocaleDateString()}
               </p>
-              <p className='text-gray-600 text-sm'>{food.additionalNotes}</p>
-              <p className='text-gray-600 text-sm mt-2'>
+              <p className='text-zinc-200 text-sm'>{food.additionalNotes}</p>
+              <p className='text-zinc-200 text-sm mt-2'>
                 Donated by:{' '}
                 <span className='font-semibold'>{food.donator.name}</span>
               </p>
@@ -55,7 +54,7 @@ const Featured = () => {
       <div className='text-center mt-6'>
         <button
           onClick={() => navigate('/available-foods')}
-          className='bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600'
+          className='bg-green-600 font-medium text-white py-2 px-6 rounded hover:bg-blue-600'
         >
           Show All
         </button>
