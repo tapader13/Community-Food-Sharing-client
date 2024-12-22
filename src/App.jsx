@@ -9,6 +9,7 @@ import Login from './components/authenticate/Login';
 import AddFood from './components/AddFood';
 import PrivateRoute from './private/PrivateRoute';
 import AvailableFood from './components/AvailableFood';
+import FoodDetails from './components/FoodDetails';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +27,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddFood />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/food/:id',
+        element: (
+          <PrivateRoute>
+            <FoodDetails />
           </PrivateRoute>
         ),
       },

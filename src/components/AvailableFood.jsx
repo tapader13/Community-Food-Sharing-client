@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
+import Spinner from './Spinner';
 
 const AvailableFood = () => {
   const [foods, setFoods] = useState([]);
@@ -65,7 +66,7 @@ const AvailableFood = () => {
       </div>
 
       {/* Loading Indicator */}
-      {loading && <p className='text-center'>Loading...</p>}
+      {loading && <Spinner />}
 
       {/* Foods Section */}
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
@@ -85,7 +86,7 @@ const AvailableFood = () => {
               Expiry Date: {new Date(food.expiryDate).toLocaleDateString()}
             </p>
             <button
-              onClick={() => navigate(`/food-details/${food._id}`)}
+              onClick={() => navigate(`/food/${food._id}`)}
               className='mt-4 bg-green-500 text-white px-4 py-2 rounded'
             >
               View Details
