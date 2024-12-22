@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css2?family=Niconne');
 
 .abril {
   font-family: 'Abril Fatface', sans-serif;
@@ -7,6 +8,10 @@
 
 .pt {
   font-family: 'PT Sans', sans-serif;
+}
+
+.niconne {
+  font-family: 'Niconne', sans-serif;
 }
 
 @tailwind base;

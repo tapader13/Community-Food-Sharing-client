@@ -1,4 +1,5 @@
 import Banner from './Banner';
+import Offer from './Offer';
 import Organic from './Organic';
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Banner />
       <Organic />
+      <Offer />
     </div>
   );
 };
