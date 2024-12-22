@@ -5,7 +5,7 @@ import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
-  const { loginUser, loginWithGoogle, loading } = useAuth();
+  const { loginUser, googleLogin, loading } = useAuth();
   const {
     register,
     handleSubmit,
@@ -31,9 +31,12 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await loginWithGoogle();
-      toast.success('Google login successful!');
-      // Navigate to home page or dashboard
+      const frm = loc?.state?.from?.pathname || '/';
+      const user = await googleLogin();
+      if (user) {
+        toast.success('Logged in with Google');
+        navigate(frm, { replace: true });
+      }
     } catch (error) {
       toast.error('Google login failed. Please try again.');
     }
