@@ -8,24 +8,24 @@ const Banner = () => {
   const slides = [
     {
       image: '/Variety-fruits-vegetables.webp',
-      title: 'Natural',
-      subtitle: 'Supplied by nature, grown by nature lovers.',
-      discount: 'Only Today 30% Discount!',
-      cta: 'Subscribe Today',
+      title: 'Share & Reduce Waste',
+      subtitle: 'Donate surplus food and help others in need.',
+      discount: 'Only Today: 30% More Food for Every Donation!',
+      cta: 'Start Donating Today',
     },
     {
       image: '/healthy-eating-ingredients-1296x728-header.jpg',
-      title: 'Healthy',
-      subtitle: 'Fresh from the farm to your table.',
-      discount: 'Only Today 30% Discount!',
-      cta: 'Montly Subscribe',
+      title: 'Support Your Community',
+      subtitle: 'Fresh food from your neighbors, for your neighbors.',
+      discount: 'Only Today: 30% More Food for Every Request!',
+      cta: 'Request Food Now',
     },
     {
       image: '/premium_photo-1670601440146-3b33dfcd7e17.avif',
-      title: 'Smarter',
-      subtitle: 'Eco-friendly choices for a better tomorrow.',
-      discount: 'Only Today 30% Discount!',
-      cta: 'Montly Subscribe',
+      title: 'Eco-friendly Giving',
+      subtitle: 'Reduce food waste and make a positive impact.',
+      discount: 'Only Today: 30% More for Every Surplus Shared!',
+      cta: 'Join the Movement',
     },
   ];
 
