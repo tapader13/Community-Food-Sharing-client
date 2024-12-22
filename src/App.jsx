@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import AuthProvider from './provider/AuthProvider';
 import Login from './components/authenticate/Login';
 import AddFood from './components/AddFood';
+import PrivateRoute from './private/PrivateRoute';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,7 +16,14 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/register', element: <Register /> },
       { path: '/login', element: <Login /> },
-      { path: '/add-food', element: <AddFood /> },
+      {
+        path: '/add-food',
+        element: (
+          <PrivateRoute>
+            <AddFood />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
