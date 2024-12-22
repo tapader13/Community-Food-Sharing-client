@@ -1,44 +1,53 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
-
+// import { useNavigate } from 'react-router';
+import useAuth from './../hooks/useAuth';
+import toast from 'react-hot-toast';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 const AddFood = () => {
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [user, setUser] = useState({
-    name: 'John Doe', // Replace with actual user data from your authentication system
-    email: 'johndoe@example.com', // Same here
-    image: 'path_to_image', // User's image URL
-  });
-  const navigate = useNavigate();
 
-  // Handle form submission
+  //   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [expiryDate, setExpiryDate] = useState(new Date());
   const onSubmit = async (data) => {
     try {
-      // Send the form data to your Express API via Axios
-      await axios.post('/api/foods', {
+      setLoading(true);
+      const res = await axios.post('http://localhost:5001/foods', {
         ...data,
+        foodStatus: 'available',
+        foodQuantity: parseInt(data.foodQuantity),
         donator: {
-          name: user.name,
+          name: user.displayName,
           email: user.email,
-          image: user.image,
+          image: user.photoURL,
         },
+        expiryDate: expiryDate.toISOString(),
       });
-
-      // Redirect to Available Foods page after successful submission
-      navigate('/available-foods');
+      if (res?.data?.success) {
+        toast.success(res.data.message);
+      }
+      //   navigate('/available-foods');
     } catch (error) {
-      console.error('Error adding food:', error);
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className='container mx-auto p-4'>
-      <h2 className='text-2xl font-bold text-center mb-6'>Add Food</h2>
+      <h2 className='text-2xl font-bold text-center mb-6'>
+        <span className='text-green-600'>Add</span>{' '}
+        <span className='text-gray-800'>Food</span>
+      </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className='max-w-lg mx-auto space-y-4'
@@ -77,6 +86,11 @@ const AddFood = () => {
             id='foodImage'
             {...register('foodImage', {
               required: 'Food image URL is required',
+              pattern: {
+                value:
+                  /^(https?:\/\/)?(www\.)?([a-zA-Z0-9.-]+)\.([a-z]{2,6})(\/[^\s]*)?$/,
+                message: 'Invalid URL',
+              },
             })}
             className='w-full px-4 py-2 border border-gray-300 rounded'
           />
@@ -142,10 +156,12 @@ const AddFood = () => {
           >
             Expired Date
           </label>
-          <input
-            type='datetime-local'
-            id='expiryDate'
-            {...register('expiryDate', { required: 'Expiry date is required' })}
+          <DatePicker
+            selected={expiryDate}
+            onChange={(date) => setExpiryDate(date)}
+            minDate={new Date()}
+            // showTimeSelect
+            dateFormat='yyyy/MM/dd'
             className='w-full px-4 py-2 border border-gray-300 rounded'
           />
           {errors.expiryDate && (
@@ -165,7 +181,9 @@ const AddFood = () => {
           </label>
           <textarea
             id='additionalNotes'
-            {...register('additionalNotes')}
+            {...register('additionalNotes', {
+              required: 'Additional notes is required',
+            })}
             className='w-full px-4 py-2 border border-gray-300 rounded'
           ></textarea>
         </div>
@@ -173,6 +191,7 @@ const AddFood = () => {
         {/* Submit Button */}
         <div>
           <button
+            disabled={loading}
             type='submit'
             className='w-full bg-blue-500 text-white py-2 rounded'
           >
