@@ -1,6 +1,6 @@
 const products = [
   {
-    img: '/asset 28.jpeg',
+    img: '/6788-amish-white-bread-DDMFS-4x3-6faa1e552bdb4f6eabdd7791e59b3c84.jpg',
     name: 'Bread',
     donor: 'John Doe',
     donorPhoto: '/asset 32.png',
@@ -11,7 +11,7 @@ const products = [
     color: '#FFEFD6',
   },
   {
-    img: '/asset 29.jpeg',
+    img: '/images.jpg',
     name: 'Honey',
     donor: 'Jane Smith',
     donorPhoto: '/asset 70.png',
@@ -22,7 +22,7 @@ const products = [
     color: '#EAF4FF',
   },
   {
-    img: '/asset 30.jpeg',
+    img: '/1371600807071.webp',
     name: 'Penne',
     donor: 'Mark Lee',
     donorPhoto: '/asset 71.png',
@@ -33,7 +33,7 @@ const products = [
     color: '#FFEFD6',
   },
   {
-    img: '/asset 31.jpeg',
+    img: '/imagjes.jpg',
     name: 'Chick-pea',
     donor: 'Sarah Brown',
     donorPhoto: '/asset 72.png',

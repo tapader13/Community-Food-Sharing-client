@@ -8,6 +8,7 @@ import AuthProvider from './provider/AuthProvider';
 import Login from './components/authenticate/Login';
 import AddFood from './components/AddFood';
 import PrivateRoute from './private/PrivateRoute';
+import AvailableFood from './components/AvailableFood';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/register', element: <Register /> },
       { path: '/login', element: <Login /> },
+      {
+        path: '/available-foods',
+        element: <AvailableFood />,
+      },
       {
         path: '/add-food',
         element: (

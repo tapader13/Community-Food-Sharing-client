@@ -193,7 +193,7 @@ const AddFood = () => {
           <button
             disabled={loading}
             type='submit'
-            className='w-full bg-blue-500 text-white py-2 rounded'
+            className='w-full bg-green-600 text-white py-2 rounded'
           >
             Add Food
           </button>
