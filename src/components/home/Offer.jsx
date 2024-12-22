@@ -2,41 +2,51 @@ const products = [
   {
     img: '/asset 28.jpeg',
     name: 'Bread',
-    price: '$7',
-    mainPrice: '$8',
-    discount: '-12%',
+    donor: 'John Doe',
+    donorPhoto: '/asset 32.png',
+    availability: 'Available',
+    expiration: '2024-12-30',
+    notes: 'Freshly baked, available until December 30th!',
     star: 4,
     color: '#FFEFD6',
   },
   {
     img: '/asset 29.jpeg',
     name: 'Honey',
-    price: '$22',
-    mainPrice: '$25',
-    discount: '-12%',
+    donor: 'Jane Smith',
+    donorPhoto: '/asset 70.png',
+    availability: 'Available',
+    expiration: '2024-12-31',
+    notes: 'Raw honey. Donate before it expires!',
     star: 5,
     color: '#EAF4FF',
   },
   {
     img: '/asset 30.jpeg',
     name: 'Penne',
-    price: '$11',
-    mainPrice: '$13',
-    discount: '-15%',
+    donor: 'Mark Lee',
+    donorPhoto: '/asset 71.png',
+    availability: 'Available',
+    expiration: '2024-12-25',
+    notes: 'Pasta ready for donation. Expiring soon!',
     star: 4,
     color: '#FFEFD6',
   },
   {
     img: '/asset 31.jpeg',
     name: 'Chick-pea',
-    price: '$11',
-    mainPrice: '$14',
-    discount: '-21%',
+    donor: 'Sarah Brown',
+    donorPhoto: '/asset 72.png',
+    availability: 'Requested',
+    expiration: '2024-12-28',
+    notes: 'Canned chick-peas available for donation.',
     star: 3,
     color: '#EAF4FF',
   },
 ];
-import { Star, ShoppingCart, Eye, Heart } from 'lucide-react';
+
+import { Heart, Eye } from 'lucide-react';
+
 const Offer = () => {
   return (
     <div className='w-11/12 mx-auto'>
@@ -45,42 +55,40 @@ const Offer = () => {
           <div
             key={index}
             style={{ backgroundColor: product.color }}
-            className='card w-80 relative  '
+            className='card w-80 relative p-5 rounded-lg shadow-lg'
           >
-            <div className='absolute text-white text-3xl niconne top-0 right-0 bg-[#244263] h-20 w-20 flex items-center justify-center'>
-              {product.discount}
-            </div>
             <figure className='px-10 pt-10'>
-              <img src={product.img} alt='Shoes' className='rounded-xl' />
+              <img
+                src={product.img}
+                alt={product.name}
+                className='rounded-xl w-full h-48 object-cover'
+              />
             </figure>
-            <div className='flex flex-col items-center justify-center'>
+            <div className='absolute text-white niconne text-xs top-2 right-2 bg-[#244263] h-14 w-14 flex items-center justify-center rounded-full'>
+              {product.availability}
+            </div>
+            <div className='flex flex-col items-center justify-center mt-4'>
               <div className='flex items-center gap-3'>
                 <h2 className='text-[#244263] font-bold text-xl'>
                   {product.name}
                 </h2>
+              </div>
+              <p className='text-sm text-gray-600 mt-2'>{product.notes}</p>
 
-                <h2 className='line-through font-bold text-xl'>
-                  {product.mainPrice}
-                </h2>
-                <h2 className='text-[#FFA27E] font-bold text-xl'>
-                  {' '}
-                  {product.price}
-                </h2>
+              <div className='flex items-center gap-3 mt-2'>
+                <img
+                  src={product.donorPhoto}
+                  alt={product.donor}
+                  className='w-8 h-8 rounded-full'
+                />
+                <p className='text-sm text-[#244263] font-semibold'>
+                  {product.donor}
+                </p>
               </div>
-              <p>{product.price} / kg</p>
-              <div className='flex items-center mt-2  gap-2'>
-                {[...Array(5)].map((_, index) =>
-                  index < product.star ? (
-                    <Star key={index} size={15} fill='#244263' />
-                  ) : (
-                    <Star key={index} size={15} color='#244263' />
-                  )
-                )}
-              </div>
-              <div className='flex items-center mb-5 gap-4'>
-                <button className='btn mt-4 rounded-full p-2 bg-[#092E56]'>
-                  <ShoppingCart size={20} color='#fff' />
-                </button>
+              <p className='text-sm text-gray-600 mt-1'>
+                Expires: {product.expiration}
+              </p>
+              <div className='flex items-center gap-4'>
                 <button className='btn p-2 rounded-full bg-[#73B6FE] mt-4'>
                   <Eye size={20} color='#fff' />
                 </button>

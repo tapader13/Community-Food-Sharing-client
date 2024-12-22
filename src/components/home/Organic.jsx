@@ -1,21 +1,21 @@
 const Organic = () => {
   const features = [
     {
-      title: 'Start with Our Company First',
+      title: 'Join the Food Sharing Movement',
       description:
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptat accusantium doloremque laudantium. Sed ut perspiciatis.',
+        'Help reduce food waste and share surplus food with those in need. Together, we can create a sustainable and compassionate community.',
       color: 'A6CEF9',
     },
     {
-      title: 'Learn How to Grow Yourself',
+      title: 'Support Your Community',
       description:
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptat accusantium doloremque laudantium. Sed ut perspiciatis.',
+        'By donating food, you’re directly supporting local families and individuals. Every contribution helps fight hunger and promotes goodwill.',
       color: 'FFA27E',
     },
     {
-      title: 'Farming Strategies of Today',
+      title: 'Make a Positive Impact',
       description:
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptat accusantium doloremque laudantium. Sed ut perspiciatis.',
+        'Your food donations can reduce waste and help provide nutritious meals to those who need them most. Be part of a solution for a better tomorrow.',
       color: 'FEEF75',
     },
   ];
