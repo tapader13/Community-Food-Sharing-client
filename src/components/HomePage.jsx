@@ -1,5 +1,13 @@
+import { Outlet } from 'react-router';
+import Navbar from './Navbar';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
+  );
 };
 
 export default HomePage;
