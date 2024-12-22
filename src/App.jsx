@@ -3,6 +3,8 @@ import './App.css';
 import HomePage from './components/HomePage';
 import Home from './components/home/Home';
 import Register from './components/authenticate/Register';
+import { Toaster } from 'react-hot-toast';
+import AuthProvider from './provider/AuthProvider';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,7 +18,14 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App;

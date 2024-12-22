@@ -1,11 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
-import toast, { Toaster } from 'react-hot-toast';
-
-// Assume this function is implemented elsewhere and handles the actual registration
-// import { registerUser } from '../services/auth';
+import toast from 'react-hot-toast';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
+  const { signUpUser, loading, setUser, updateProfileUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -13,11 +12,49 @@ const Register = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = async (data) => {};
+  const onSubmit = (data) => {
+    const { name, email, photoURL, password } = data;
+    console.log(data);
+    signUpUser(email, password)
+      .then((user) => {
+        if (user && !user.displayName) {
+          updateProfileUser({
+            displayName: name,
+            photoURL: photoURL,
+          })
+            .then(() => {
+              fetch('http://localhost:5001/users', {
+                method: 'POST',
+                headers: {
+                  'content-type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, photoURL }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data?.data?.insertedId) {
+                    setUser((prev) => ({
+                      ...prev,
+                      displayName: name,
+                      photoURL: photoURL,
+                    }));
+                    toast.success('Registration successful.');
+                    navigate('/');
+                  }
+                });
+            })
+            .catch((err) => {
+              toast.error('Failed to update profile. Please try again.');
+            });
+        }
+      })
+      .catch((err) => {
+        toast.error('Failed to register. Please try again.');
+      });
+  };
 
   return (
     <div className='min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
-      <Toaster position='top-center' reverseOrder={false} />
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
         <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
           Create your account
@@ -152,10 +189,10 @@ const Register = () => {
             <div>
               <button
                 type='submit'
-                disabled={isLoading}
+                disabled={loading}
                 className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
               >
-                {isLoading ? 'Registering...' : 'Register'}
+                {loading ? 'Registering...' : 'Register'}
               </button>
             </div>
           </form>
