@@ -5,6 +5,7 @@ import useAuth from '../hooks/useAuth';
 import Spinner from './Spinner';
 import DatePicker from 'react-datepicker';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const ManageMyFood = () => {
   const { user } = useAuth();
@@ -36,14 +37,32 @@ const ManageMyFood = () => {
   };
 
   const deleteFood = async (foodId) => {
-    if (window.confirm('Are you sure you want to delete this food?')) {
-      try {
-        await axios.delete(`/foods/${foodId}`);
-        toast.success('Food deleted successfully');
-        fetchFoods(); // Refresh the list
-      } catch (error) {
-        toast.error('Failed to delete food');
-      }
+    try {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await axios.delete(
+            `http://localhost:5001/foods/${foodId}`
+          );
+          if (res.data.success) {
+            fetchFoods();
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              icon: 'success',
+            });
+          }
+        }
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
   };
   const onSubmit = async (data) => {
@@ -83,7 +102,6 @@ const ManageMyFood = () => {
   useEffect(() => {
     fetchFoods();
   }, []);
-  console.log(foods);
   useEffect(() => {
     if (food?.expiryDate) {
       setExpiryDate(new Date(food.expiryDate));
