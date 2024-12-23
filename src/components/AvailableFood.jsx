@@ -28,7 +28,7 @@ const AvailableFood = () => {
     if (search) {
       params.search = search;
     }
-    const res = await axios.get('http://localhost:5001/foods/all', {
+    const res = await axios.get('https://backendas11.vercel.app/foods/all', {
       params,
     });
 
@@ -112,9 +112,12 @@ const AvailableFood = () => {
 
       {/* Foods Section */}
       <div
-        className={`grid grid-cols-1 md:grid-cols-${
-          isThreeColumn ? 3 : 2
-        } gap-4`}
+        className={`food-grid ${
+          isThreeColumn ? 'three-columns' : 'two-columns'
+        }`}
+        // className={`grid grid-cols-1  md:grid-cols-${
+        //   isThreeColumn ? 3 : 2
+        // } gap-4`}
       >
         {foods.length > 0 ? (
           foods.map((food) => (

@@ -40,7 +40,9 @@ const AuthProvider = ({ children }) => {
         const users = { email: user.email };
 
         axios
-          .post('http://localhost:5001/jwt', users, { withCredentials: true })
+          .post('https://backendas11.vercel.app/jwt', users, {
+            withCredentials: true,
+          })
           .then((res) => {
             // console.log('login token', res.data);
             setLoading(false);
@@ -48,7 +50,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            'http://localhost:5001/logout',
+            'https://backendas11.vercel.app/logout',
             {},
             {
               withCredentials: true,

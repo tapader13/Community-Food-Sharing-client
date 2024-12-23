@@ -18,9 +18,12 @@ const FoodDetails = () => {
     const fetchFoodDetails = async () => {
       try {
         setLoading(true);
-        const res = await axiosSecure.get(`http://localhost:5001/foods/${id}`, {
-          params: { email: user?.email },
-        });
+        const res = await axiosSecure.get(
+          `https://backendas11.vercel.app/foods/${id}`,
+          {
+            params: { email: user?.email },
+          }
+        );
         if (res.data?.success) {
           setFood(res.data.data);
           setAdditionalNotes(res.data.data?.additionalNotes);
@@ -49,7 +52,7 @@ const FoodDetails = () => {
         additionalNotes,
       };
       const res = await axiosSecure.post(
-        'http://localhost:5001/food/requests',
+        'https://backendas11.vercel.app/food/requests',
         requestData
       );
       if (res.data.success) {

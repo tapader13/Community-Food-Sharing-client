@@ -23,7 +23,7 @@ const Register = () => {
             photoURL: photoURL,
           })
             .then(() => {
-              fetch('http://localhost:5001/users', {
+              fetch('https://backendas11.vercel.app/users', {
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json',

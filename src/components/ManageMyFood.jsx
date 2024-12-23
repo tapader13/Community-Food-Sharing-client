@@ -24,9 +24,12 @@ const ManageMyFood = () => {
     try {
       // console.log('fetching foods', user?.email);
       setLoading(true);
-      const res = await axiosSecure.get('http://localhost:5001/my-foods', {
-        params: { email: user?.email },
-      });
+      const res = await axiosSecure.get(
+        'https://backendas11.vercel.app/my-foods',
+        {
+          params: { email: user?.email },
+        }
+      );
       if (res.data.success) {
         setFoods(res.data.data);
         setExpiryDate(new Date(res.data?.data[0]?.expiryDate));
@@ -51,7 +54,7 @@ const ManageMyFood = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const res = await axiosSecure.delete(
-            `http://localhost:5001/foods/${foodId}`
+            `https://backendas11.vercel.app/foods/${foodId}`
           );
           if (res.data.success) {
             fetchFoods();
@@ -71,7 +74,7 @@ const ManageMyFood = () => {
     try {
       setLoading(true);
       const res = await axiosSecure.patch(
-        `http://localhost:5001/foods/${food._id}`,
+        `https://backendas11.vercel.app/foods/${food._id}`,
         {
           foodName: data.foodName,
           foodImage: data.foodImage,

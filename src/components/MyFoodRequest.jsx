@@ -13,7 +13,7 @@ const MyFoodRequest = () => {
     try {
       setLoading(true);
       const res = await axiosSecure.get(
-        'http://localhost:5001/my-food-request',
+        'https://backendas11.vercel.app/my-food-request',
         {
           params: { email: user?.email },
         }

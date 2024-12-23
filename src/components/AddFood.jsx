@@ -22,7 +22,7 @@ const AddFood = () => {
   const [expiryDate, setExpiryDate] = useState(new Date());
   const addFood = async (data) => {
     const response = await axiosSecure.post(
-      'http://localhost:5001/foods',
+      'https://backendas11.vercel.app/foods',
       data
     );
     return response.data;
@@ -41,7 +41,7 @@ const AddFood = () => {
   // const onSubmit = async (data) => {
   //   try {
   //     // setLoading(true);
-  //     const res = await axios.post('http://localhost:5001/foods', {
+  //     const res = await axios.post('https://backendas11.vercel.app/foods', {
   //       ...data,
   //       foodStatus: 'available',
   //       foodQuantity: parseInt(data.foodQuantity),

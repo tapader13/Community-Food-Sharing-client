@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface');
 @import url('https://fonts.googleapis.com/css2?family=Niconne');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .abril {
   font-family: 'Abril Fatface', sans-serif;
@@ -14,6 +17,30 @@
   font-family: 'Niconne', sans-serif;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Basic grid styles */
+.food-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+.food-grid.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.food-grid.three-columns {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Media Queries for different screen sizes */
+@media (min-width: 640px) {
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .food-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

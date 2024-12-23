@@ -8,7 +8,7 @@ const Featured = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5001/foods')
+      .get('https://backendas11.vercel.app/foods')
       .then((response) => {
         setFeaturedFoods(response.data?.data);
       })
