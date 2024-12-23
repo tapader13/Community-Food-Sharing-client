@@ -22,6 +22,7 @@ const ManageMyFood = () => {
   const axiosSecure = useAxiosSecure();
   const fetchFoods = async () => {
     try {
+      console.log('fetching foods', user?.email);
       setLoading(true);
       const res = await axiosSecure.get('http://localhost:5001/my-foods', {
         params: { email: user?.email },
@@ -112,7 +113,7 @@ const ManageMyFood = () => {
     }
   }, [food]);
   return (
-    <div className='w-11/12 mx-auto p-4'>
+    <div className='w-11/12 mx-auto sm:p-4'>
       <h2 className='text-2xl font-bold text-center mb-6'>
         <span className='text-green-600'>Manage</span> My Foods
       </h2>
@@ -120,54 +121,58 @@ const ManageMyFood = () => {
         <Spinner />
       ) : (
         foods.length > 0 && (
-          <table className='table-auto w-full border-collapse border border-gray-200'>
-            <thead>
-              <tr>
-                <th className='border border-gray-300 px-4 py-2'>Name</th>
-                <th className='border border-gray-300 px-4 py-2'>Quantity</th>
-                <th className='border border-gray-300 px-4 py-2'>ExpiryDate</th>
-                <th className='border border-gray-300 px-4 py-2'>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {foods.map((food) => (
-                <tr key={food._id}>
-                  <td className='border border-gray-300 px-4 py-2'>
-                    {food?.foodName}
-                  </td>
-                  <td className='border border-gray-300 px-4 py-2'>
-                    {food?.foodQuantity}
-                  </td>
-                  <td className='border border-gray-300 px-4 py-2'>
-                    {new Date(food?.expiryDate).toLocaleDateString()}
-                  </td>
-                  <td className='border border-gray-300 px-4 py-2'>
-                    <button
-                      onClick={() => {
-                        setModalOpen(true);
-                        setFood(food);
-                      }}
-                      className='bg-green-600 text-white px-4 py-2 rounded mr-2'
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => deleteFood(food._id)}
-                      className='bg-red-500 text-white px-4 py-2 rounded'
-                    >
-                      Delete
-                    </button>
-                  </td>
+          <div className='overflow-x-auto'>
+            <table className='table-auto  w-full border-collapse border border-gray-200'>
+              <thead>
+                <tr>
+                  <th className='border border-gray-300 px-4 py-2'>Name</th>
+                  <th className='border border-gray-300 px-4 py-2'>Quantity</th>
+                  <th className='border border-gray-300 px-4 py-2'>
+                    ExpiryDate
+                  </th>
+                  <th className='border border-gray-300 px-4 py-2'>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {foods.map((food) => (
+                  <tr key={food._id}>
+                    <td className='border border-gray-300 px-4 py-2'>
+                      {food?.foodName}
+                    </td>
+                    <td className='border border-gray-300 px-4 py-2'>
+                      {food?.foodQuantity}
+                    </td>
+                    <td className='border border-gray-300 px-4 py-2'>
+                      {new Date(food?.expiryDate).toLocaleDateString()}
+                    </td>
+                    <td className='border border-gray-300 px-4 py-2'>
+                      <button
+                        onClick={() => {
+                          setModalOpen(true);
+                          setFood(food);
+                        }}
+                        className='bg-green-600 mb-2 sm:mb-0 text-white px-4 py-2 rounded mr-2'
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => deleteFood(food._id)}
+                        className='bg-red-500 text-white px-4 py-2 rounded'
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )
       )}
       {/* modal */}
       {modalOpen && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center'>
-          <div className='bg-white p-6 rounded shadow-lg max-w-md w-full'>
+          <div className='bg-white p-6 h-96 sm:h-auto rounded shadow-lg max-w-[400px] sm:max-w-md w-full overflow-y-auto'>
             <h3 className='text-xl font-bold mb-4'>Update Food Info</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}

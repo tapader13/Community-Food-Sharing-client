@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import toast from 'react-hot-toast';
 import Spinner from './Spinner';
 import { useQuery } from '@tanstack/react-query';
 
@@ -68,7 +67,7 @@ const AvailableFood = () => {
         {' '}
         <span className='text-green-600'>Available</span> Foods
       </h2>
-      <div className='flex justify-center gap-10  items-center mb-4'>
+      <div className='flex justify-center gap-10 items-center mb-4'>
         <div>
           <input
             type='text'
@@ -80,7 +79,7 @@ const AvailableFood = () => {
         </div>
         <div className=''>
           <button
-            className='text-xl text-white w-fit px-4 py-2 cursor-pointer bg-green-600  border border-gray-300 rounded font-bold text-center'
+            className='text-xl hidden sm:block text-white w-fit px-4 py-2 cursor-pointer bg-green-600  border border-gray-300 rounded font-bold text-center'
             onClick={toggleLayout}
           >
             Change Layout
@@ -117,29 +116,33 @@ const AvailableFood = () => {
           isThreeColumn ? 3 : 2
         } gap-4`}
       >
-        {foods.map((food) => (
-          <div
-            key={food._id}
-            className='border border-gray-300 rounded-lg shadow-md p-4'
-          >
-            <img
-              src={food.foodImage}
-              alt={food.foodName}
-              className={`w-full h-48 object-cover rounded-md mb-4`}
-            />
-            <h3 className='text-lg font-bold'>{food.foodName}</h3>
-            <p className='text-gray-700'>Quantity: {food.foodQuantity}</p>
-            <p className='text-gray-700'>
-              Expiry Date: {new Date(food.expiryDate).toLocaleDateString()}
-            </p>
-            <button
-              onClick={() => navigate(`/food/${food._id}`)}
-              className='mt-4 bg-green-500 text-white px-4 py-2 rounded'
+        {foods.length > 0 ? (
+          foods.map((food) => (
+            <div
+              key={food._id}
+              className='border border-gray-300 rounded-lg shadow-md p-4'
             >
-              View Details
-            </button>
-          </div>
-        ))}
+              <img
+                src={food.foodImage}
+                alt={food.foodName}
+                className={`w-full h-48 object-cover rounded-md mb-4`}
+              />
+              <h3 className='text-lg font-bold'>{food.foodName}</h3>
+              <p className='text-gray-700'>Quantity: {food.foodQuantity}</p>
+              <p className='text-gray-700'>
+                Expiry Date: {new Date(food.expiryDate).toLocaleDateString()}
+              </p>
+              <button
+                onClick={() => navigate(`/food/${food._id}`)}
+                className='mt-4 bg-green-500 text-white px-4 py-2 rounded'
+              >
+                View Details
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className='text-red-500'>No foods available</p>
+        )}
       </div>
     </div>
   );

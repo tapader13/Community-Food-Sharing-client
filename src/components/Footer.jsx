@@ -34,16 +34,13 @@ export function Footer() {
             <h3 className='text-lg font-semibold mb-4'>Quick Links</h3>
             <ul className='space-y-2'>
               <li>
-                <Link
-                  href='/'
-                  className='hover:text-green-400 transition-colors'
-                >
+                <Link to='/' className='hover:text-green-400 transition-colors'>
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/available-foods'
+                  to='/available-foods'
                   className='hover:text-green-400 transition-colors'
                 >
                   Available Foods
@@ -51,7 +48,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href='/add-food'
+                  to='/add-food'
                   className='hover:text-green-400 transition-colors'
                 >
                   Add Food
@@ -59,7 +56,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href='/manage-my-foods'
+                  to='/manage-my-foods'
                   className='hover:text-green-400 transition-colors'
                 >
                   Manage My Foods
@@ -67,7 +64,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href='/my-food-request'
+                  to='/my-food-request'
                   className='hover:text-green-400 transition-colors'
                 >
                   My Food Request

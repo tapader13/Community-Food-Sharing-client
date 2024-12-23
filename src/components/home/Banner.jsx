@@ -51,18 +51,20 @@ const Banner = () => {
               className='absolute inset-0 w-full h-full object-cover'
             />{' '}
             <div className='absolute inset-0 bg-black bg-opacity-40'></div>{' '}
-            <div className='absolute inset-0 flex flex-col p-10 text-white text-center'>
+            <div className='absolute inset-0 p-2 flex flex-col sm:p-10 text-white text-center'>
               {' '}
-              <div className='w-full flex justify-between items-start px-10'>
+              <div className='w-full flex justify-between items-start sm:px-10'>
                 {' '}
-                <p className='text-2xl abril font-semibold'>
+                <p className='sm:text-2xl text-sm abril font-semibold'>
                   {slide.discount}
                 </p>{' '}
-                <p className='text-2xl abril font-semibold'>{slide.cta}</p>{' '}
+                <p className='sm:text-2xl text-sm abril font-semibold'>
+                  {slide.cta}
+                </p>{' '}
               </div>{' '}
               <div className='transform relative top-1/2 -translate-y-1/2'>
                 {' '}
-                <h2 className='text-[80px] abril font-bold mb-1'>
+                <h2 className='sm:text-[80px] text-[50px] abril font-bold mb-1'>
                   {' '}
                   {slide.title}{' '}
                 </h2>{' '}

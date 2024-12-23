@@ -102,7 +102,7 @@ const FoodDetails = () => {
       {/* Request Modal */}
       {modalOpen && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center'>
-          <div className='bg-white p-6 rounded shadow-lg max-w-md w-full'>
+          <div className='bg-white p-6 rounded h-96 sm:h-auto shadow-lg max-w-[400px] sm:max-w-md w-full overflow-y-auto'>
             <h3 className='text-xl font-bold mb-4'>Request Food</h3>
             <div className='space-y-2'>
               <p>

@@ -50,12 +50,12 @@ import { Heart, Eye } from 'lucide-react';
 const Offer = () => {
   return (
     <div className='w-11/12 mx-auto'>
-      <div className='grid grid-cols-1 gap-5 justify-between md:grid-cols-4'>
+      <div className='grid grid-cols-1 gap-10 justify-between md:grid-cols-4'>
         {products.map((product, index) => (
           <div
             key={index}
             style={{ backgroundColor: product.color }}
-            className='card w-80 relative p-5 rounded-lg shadow-lg'
+            className='card relative p-5 rounded-lg shadow-lg'
           >
             <figure className='px-10 pt-10'>
               <img
