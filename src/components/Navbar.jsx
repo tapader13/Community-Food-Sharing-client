@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <nav className='bg-white shadow-sm'>
-      <div className='w-11/12 mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className='w-11/12 mx-auto px-4 sm:px-6 md:px-2 lg:px-2 xl:px-8'>
         <div className='flex justify-between h-16'>
           {/* Logo */}
           <div className='flex-shrink-0 flex items-center'>
@@ -20,7 +20,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className='hidden md:flex md:items-center md:space-x-8'>
+          <div className='hidden lg:flex md:items-center xl:space-x-8'>
             <Link
               to='/'
               className='text-gray-700 hover:text-green-600 px-3 py-2'
@@ -88,7 +88,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className='md:hidden flex items-center'>
+          <div className='lg:hidden flex items-center'>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className='text-gray-700 hover:text-green-600'
@@ -105,7 +105,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className='md:hidden'>
+        <div className='lg:hidden'>
           <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
             <Link
               to='/'

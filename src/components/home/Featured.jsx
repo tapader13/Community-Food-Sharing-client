@@ -23,7 +23,7 @@ const Featured = () => {
         <span className='text-green-600'>Featured</span>{' '}
         <span className='text-gray-800'>Foods</span>
       </h2>
-      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {featuredFoods.map((food, index) => (
           <div
             key={index}
