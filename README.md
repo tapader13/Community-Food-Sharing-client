@@ -6,7 +6,7 @@ The **Community Food Sharing and Surplus Reduction Platform** is designed to hel
 
 ## Live URL
 
-[Live Website](#https://as11-a6789.web.app/)
+[Live Website](https://as11-a6789.web.app/)
 
 ## Key Features
 
