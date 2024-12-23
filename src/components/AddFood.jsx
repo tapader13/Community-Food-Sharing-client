@@ -6,6 +6,7 @@ import useAuth from './../hooks/useAuth';
 import toast from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 const AddFood = () => {
   const { user } = useAuth();
   const {
@@ -15,31 +16,60 @@ const AddFood = () => {
   } = useForm();
 
   //   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [expiryDate, setExpiryDate] = useState(new Date());
-  const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      const res = await axios.post('http://localhost:5001/foods', {
-        ...data,
-        foodStatus: 'available',
-        foodQuantity: parseInt(data.foodQuantity),
-        donator: {
-          name: user.displayName,
-          email: user.email,
-          image: user.photoURL,
-        },
-        expiryDate: expiryDate.toISOString(),
-      });
-      if (res?.data?.success) {
-        toast.success(res.data.message);
-      }
-      //   navigate('/available-foods');
-    } catch (error) {
-      toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
-    }
+  const addFood = async (data) => {
+    const response = await axios.post('http://localhost:5001/foods', data);
+    return response.data;
+  };
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: addFood,
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries(['availableFoods']);
+    },
+    onError: (error) => {
+      toast.error(error?.response?.data?.message || 'Failed to add food');
+    },
+  });
+  // const onSubmit = async (data) => {
+  //   try {
+  //     // setLoading(true);
+  //     const res = await axios.post('http://localhost:5001/foods', {
+  //       ...data,
+  //       foodStatus: 'available',
+  //       foodQuantity: parseInt(data.foodQuantity),
+  //       donator: {
+  //         name: user.displayName,
+  //         email: user.email,
+  //         image: user.photoURL,
+  //       },
+  //       expiryDate: expiryDate.toISOString(),
+  //     });
+  //     if (res?.data?.success) {
+  //       toast.success(res.data.message);
+  //     }
+  //     //   navigate('/available-foods');
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  const onSubmit = (data) => {
+    const foodData = {
+      ...data,
+      foodStatus: 'available',
+      foodQuantity: parseInt(data.foodQuantity),
+      donator: {
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+      },
+      expiryDate: expiryDate.toISOString(),
+    };
+    mutation.mutate(foodData);
   };
 
   return (
@@ -191,11 +221,11 @@ const AddFood = () => {
         {/* Submit Button */}
         <div>
           <button
-            disabled={loading}
+            disabled={mutation.isLoading}
             type='submit'
             className='w-full bg-green-600 text-white py-2 rounded'
           >
-            Add Food
+            {mutation.isLoading ? 'Adding Food...' : 'Add Food'}
           </button>
         </div>
       </form>
