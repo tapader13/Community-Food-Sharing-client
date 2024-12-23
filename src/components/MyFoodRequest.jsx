@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
 import Spinner from './Spinner';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const MyFoodRequest = () => {
   const { user } = useAuth();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const axiosSecure = useAxiosSecure();
   const fetchFoodRequests = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:5001/my-food-request', {
-        params: { email: user?.email },
-      });
+      const res = await axiosSecure.get(
+        'http://localhost:5001/my-food-request',
+        {
+          params: { email: user?.email },
+        }
+      );
       if (res.data.success) {
         setRequests(res.data.data);
       }
@@ -26,8 +29,10 @@ const MyFoodRequest = () => {
   };
 
   useEffect(() => {
-    fetchFoodRequests();
-  }, []);
+    if (user?.email) {
+      fetchFoodRequests();
+    }
+  }, [user?.email]);
 
   if (loading) {
     return <Spinner />;
