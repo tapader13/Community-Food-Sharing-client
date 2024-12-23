@@ -11,6 +11,7 @@ import PrivateRoute from './private/PrivateRoute';
 import AvailableFood from './components/AvailableFood';
 import FoodDetails from './components/FoodDetails';
 import ManageMyFood from './components/ManageMyFood';
+import MyFoodRequest from './components/MyFoodRequest';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageMyFood />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/my-food-request',
+        element: (
+          <PrivateRoute>
+            <MyFoodRequest />
           </PrivateRoute>
         ),
       },
