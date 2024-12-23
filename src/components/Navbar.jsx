@@ -79,7 +79,7 @@ const Navbar = () => {
                 />
                 <button
                   onClick={() => logoutUser()}
-                  className='text-gray-700 hover:text-green-600'
+                  className='text-gray-700 bg-red-500 px-4 py-2 rounded-lg hover:text-green-600'
                 >
                   Logout
                 </button>
@@ -149,7 +149,7 @@ const Navbar = () => {
                     logoutUser();
                     setIsOpen(false);
                   }}
-                  className='block w-full text-left text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='block w-full bg-red-500 px-4 py-2 text-left text-gray-700 hover:text-green-600 rounded-lg'
                 >
                   Logout
                 </button>

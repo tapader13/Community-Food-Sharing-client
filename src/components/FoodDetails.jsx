@@ -4,6 +4,7 @@ import axios from 'axios';
 import useAuth from './../hooks/useAuth';
 import toast from 'react-hot-toast';
 import Spinner from './Spinner';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const FoodDetails = () => {
   const { id } = useParams();
@@ -12,12 +13,14 @@ const FoodDetails = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [additionalNotes, setAdditionalNotes] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     const fetchFoodDetails = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5001/foods/${id}`);
+        const res = await axiosSecure.get(`http://localhost:5001/foods/${id}`, {
+          params: { email: user?.email },
+        });
         if (res.data?.success) {
           setFood(res.data.data);
           setAdditionalNotes(res.data.data?.additionalNotes);
@@ -45,7 +48,7 @@ const FoodDetails = () => {
         expiryDate: food.expiryDate,
         additionalNotes,
       };
-      const res = await axios.post(
+      const res = await axiosSecure.post(
         'http://localhost:5001/food/requests',
         requestData
       );

@@ -7,8 +7,10 @@ import toast from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 const AddFood = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,10 @@ const AddFood = () => {
   // const [loading, setLoading] = useState(false);
   const [expiryDate, setExpiryDate] = useState(new Date());
   const addFood = async (data) => {
-    const response = await axios.post('http://localhost:5001/foods', data);
+    const response = await axiosSecure.post(
+      'http://localhost:5001/foods',
+      data
+    );
     return response.data;
   };
   const queryClient = useQueryClient();

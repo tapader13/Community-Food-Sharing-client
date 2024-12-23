@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
 import Spinner from './Spinner';
 import DatePicker from 'react-datepicker';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const ManageMyFood = () => {
   const { user } = useAuth();
@@ -19,10 +19,11 @@ const ManageMyFood = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [expiryDate, setExpiryDate] = useState(new Date());
   const [food, setFood] = useState({});
+  const axiosSecure = useAxiosSecure();
   const fetchFoods = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:5001/my-foods', {
+      const res = await axiosSecure.get('http://localhost:5001/my-foods', {
         params: { email: user?.email },
       });
       if (res.data.success) {
@@ -48,7 +49,7 @@ const ManageMyFood = () => {
         confirmButtonText: 'Yes, delete it!',
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const res = await axios.delete(
+          const res = await axiosSecure.delete(
             `http://localhost:5001/foods/${foodId}`
           );
           if (res.data.success) {
@@ -68,20 +69,23 @@ const ManageMyFood = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const res = await axios.patch(`http://localhost:5001/foods/${food._id}`, {
-        foodName: data.foodName,
-        foodImage: data.foodImage,
-        pickupLocation: data.pickupLocation,
-        additionalNotes: data.additionalNotes,
-        foodStatus: food.foodStatus,
-        foodQuantity: parseInt(data.foodQuantity),
-        donator: {
-          name: food.donator.name,
-          email: food.donator.email,
-          image: food.donator.image,
-        },
-        expiryDate: expiryDate.toISOString(),
-      });
+      const res = await axiosSecure.patch(
+        `http://localhost:5001/foods/${food._id}`,
+        {
+          foodName: data.foodName,
+          foodImage: data.foodImage,
+          pickupLocation: data.pickupLocation,
+          additionalNotes: data.additionalNotes,
+          foodStatus: food.foodStatus,
+          foodQuantity: parseInt(data.foodQuantity),
+          donator: {
+            name: food.donator.name,
+            email: food.donator.email,
+            image: food.donator.image,
+          },
+          expiryDate: expiryDate.toISOString(),
+        }
+      );
       if (res?.data?.success) {
         const updateUi = foods.find((f) => f._id === food._id);
         if (updateUi) {
@@ -115,48 +119,50 @@ const ManageMyFood = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <table className='table-auto w-full border-collapse border border-gray-200'>
-          <thead>
-            <tr>
-              <th className='border border-gray-300 px-4 py-2'>Name</th>
-              <th className='border border-gray-300 px-4 py-2'>Quantity</th>
-              <th className='border border-gray-300 px-4 py-2'>ExpiryDate</th>
-              <th className='border border-gray-300 px-4 py-2'>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foods.map((food) => (
-              <tr key={food._id}>
-                <td className='border border-gray-300 px-4 py-2'>
-                  {food?.foodName}
-                </td>
-                <td className='border border-gray-300 px-4 py-2'>
-                  {food?.foodQuantity}
-                </td>
-                <td className='border border-gray-300 px-4 py-2'>
-                  {new Date(food?.expiryDate).toLocaleDateString()}
-                </td>
-                <td className='border border-gray-300 px-4 py-2'>
-                  <button
-                    onClick={() => {
-                      setModalOpen(true);
-                      setFood(food);
-                    }}
-                    className='bg-green-600 text-white px-4 py-2 rounded mr-2'
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => deleteFood(food._id)}
-                    className='bg-red-500 text-white px-4 py-2 rounded'
-                  >
-                    Delete
-                  </button>
-                </td>
+        foods.length > 0 && (
+          <table className='table-auto w-full border-collapse border border-gray-200'>
+            <thead>
+              <tr>
+                <th className='border border-gray-300 px-4 py-2'>Name</th>
+                <th className='border border-gray-300 px-4 py-2'>Quantity</th>
+                <th className='border border-gray-300 px-4 py-2'>ExpiryDate</th>
+                <th className='border border-gray-300 px-4 py-2'>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {foods.map((food) => (
+                <tr key={food._id}>
+                  <td className='border border-gray-300 px-4 py-2'>
+                    {food?.foodName}
+                  </td>
+                  <td className='border border-gray-300 px-4 py-2'>
+                    {food?.foodQuantity}
+                  </td>
+                  <td className='border border-gray-300 px-4 py-2'>
+                    {new Date(food?.expiryDate).toLocaleDateString()}
+                  </td>
+                  <td className='border border-gray-300 px-4 py-2'>
+                    <button
+                      onClick={() => {
+                        setModalOpen(true);
+                        setFood(food);
+                      }}
+                      className='bg-green-600 text-white px-4 py-2 rounded mr-2'
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => deleteFood(food._id)}
+                      className='bg-red-500 text-white px-4 py-2 rounded'
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )
       )}
       {/* modal */}
       {modalOpen && (
