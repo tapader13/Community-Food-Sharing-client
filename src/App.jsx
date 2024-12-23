@@ -12,6 +12,7 @@ import AvailableFood from './components/AvailableFood';
 import FoodDetails from './components/FoodDetails';
 import ManageMyFood from './components/ManageMyFood';
 import MyFoodRequest from './components/MyFoodRequest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -60,12 +61,15 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  const queryClient = new QueryClient();
   return (
     <>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-      </AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </AuthProvider>
+      </QueryClientProvider>
     </>
   );
 }

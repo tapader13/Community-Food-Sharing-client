@@ -3,62 +3,89 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
 import Spinner from './Spinner';
+import { useQuery } from '@tanstack/react-query';
 
 const AvailableFood = () => {
-  const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [foods, setFoods] = useState([]);
+  // const [loading, setLoading] = useState(false);
   const [sortOption, setSortOption] = useState('');
   const navigate = useNavigate();
   const [isThreeColumn, setIsThreeColumn] = useState(true);
+  const [search, setSearch] = useState('');
 
   const fetchFoods = async (sortOption) => {
-    try {
-      setLoading(true);
+    // try {
+    // setLoading(true);
 
-      const params = {
-        status: 'available',
-      };
+    const params = {
+      status: 'available',
+    };
 
-      if (sortOption) {
-        const [field, order] = sortOption.split('-');
-        params.sortField = field;
-        params.sortOrder = order;
-      }
-
-      const res = await axios.get('http://localhost:5001/foods/all', {
-        params,
-      });
-
-      if (res.data.success) {
-        setFoods(res.data.data);
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
+    if (sortOption) {
+      const [field, order] = sortOption.split('-');
+      params.sortField = field;
+      params.sortOrder = order;
     }
+    if (search) {
+      params.search = search;
+    }
+    const res = await axios.get('http://localhost:5001/foods/all', {
+      params,
+    });
+
+    if (res.data.success) {
+      console.log(res.data.data);
+      return res.data.data;
+      // setFoods(res.data.data);
+    } else {
+      throw new Error(res.data.message || 'Failed to fetch foods');
+    }
+    // } catch (error) {
+    // toast.error(error.response.data.message);
+    // } finally {
+    // setLoading(false);
+    // }
   };
 
   const toggleLayout = () => {
     setIsThreeColumn(!isThreeColumn);
   };
-  useEffect(() => {
-    fetchFoods(sortOption);
-  }, [sortOption]);
-
+  // useEffect(() => {
+  //   fetchFoods(sortOption);
+  // }, [sortOption]);
+  const {
+    data: foods = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['availableFoods', sortOption, search],
+    queryFn: () => fetchFoods(sortOption),
+  });
   return (
     <div className='w-11/12 mx-auto p-4'>
       <h2 className='text-2xl font-bold text-center mb-3'>
         {' '}
         <span className='text-green-600'>Available</span> Foods
       </h2>
-      <div className='flex justify-end mb-4'>
-        <button
-          className='text-xl text-white w-fit px-4 py-2 cursor-pointer bg-green-600  border border-gray-300 rounded font-bold text-center'
-          onClick={toggleLayout}
-        >
-          Change Layout
-        </button>
+      <div className='flex justify-center gap-10  items-center mb-4'>
+        <div>
+          <input
+            type='text'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder='Search by food name'
+            className='px-4 py-2 border focus:ring-2  focus:outline-none focus:ring-green-600 border-gray-300 rounded'
+          />
+        </div>
+        <div className=''>
+          <button
+            className='text-xl text-white w-fit px-4 py-2 cursor-pointer bg-green-600  border border-gray-300 rounded font-bold text-center'
+            onClick={toggleLayout}
+          >
+            Change Layout
+          </button>
+        </div>
       </div>
 
       {/* Sort Section */}
@@ -70,7 +97,7 @@ const AvailableFood = () => {
           id='sort'
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
-          className='px-4 py-2 border border-gray-300 rounded'
+          className='px-4 py-2 cursor-pointer border border-gray-300 rounded'
         >
           <option value=''>Default (No Sorting)</option>
           <option value='expiryDate-asc'>Expiry Date (Ascending)</option>
@@ -81,7 +108,8 @@ const AvailableFood = () => {
       </div>
 
       {/* Loading Indicator */}
-      {loading && <Spinner />}
+      {isLoading && <Spinner />}
+      {isError && <p className='text-red-500'>{error.message}</p>}
 
       {/* Foods Section */}
       <div
