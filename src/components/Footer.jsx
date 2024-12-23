@@ -15,7 +15,7 @@ export function Footer() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Implement newsletter subscription logic
-    console.log('Subscribed:', email);
+    // console.log('Subscribed:', email);
     setEmail('');
   };
 

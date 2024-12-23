@@ -13,10 +13,12 @@ import FoodDetails from './components/FoodDetails';
 import ManageMyFood from './components/ManageMyFood';
 import MyFoodRequest from './components/MyFoodRequest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Error from './components/Error';
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
+    errorElement: <Error />,
     children: [
       { path: '/', element: <Home /> },
       { path: '/register', element: <Register /> },

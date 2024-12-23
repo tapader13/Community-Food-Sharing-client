@@ -13,7 +13,7 @@ const Featured = () => {
         setFeaturedFoods(response.data?.data);
       })
       .catch((error) => {
-        console.error('Error fetching featured foods:', error);
+        // console.error('Error fetching featured foods:', error);
       });
   }, []);
 

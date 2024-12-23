@@ -14,7 +14,7 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const { name, email, photoURL, password } = data;
-    console.log(data);
+    // console.log(data);
     signUpUser(email, password)
       .then((user) => {
         if (user && !user.displayName) {

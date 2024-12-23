@@ -33,7 +33,7 @@ const AvailableFood = () => {
     });
 
     if (res.data.success) {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       return res.data.data;
       // setFoods(res.data.data);
     } else {

@@ -22,7 +22,7 @@ const ManageMyFood = () => {
   const axiosSecure = useAxiosSecure();
   const fetchFoods = async () => {
     try {
-      console.log('fetching foods', user?.email);
+      // console.log('fetching foods', user?.email);
       setLoading(true);
       const res = await axiosSecure.get('http://localhost:5001/my-foods', {
         params: { email: user?.email },
