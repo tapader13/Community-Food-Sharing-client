@@ -15,6 +15,7 @@ export const authContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const signUpUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -44,7 +45,8 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then((res) => {
-            // console.log('login token', res.data);
+            setIsAuthenticated(true);
+            console.log('login token', res.data);
             setLoading(false);
           });
       } else {
@@ -57,7 +59,8 @@ const AuthProvider = ({ children }) => {
             }
           )
           .then((res) => {
-            // console.log('logout', res.data);
+            setIsAuthenticated(false);
+            console.log('logout', res.data);
             setLoading(false);
           });
       }
@@ -77,6 +80,7 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         setUser,
         updateProfileUser,
+        isAuthenticated,
       }}
     >
       {children}

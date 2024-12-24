@@ -24,12 +24,9 @@ const ManageMyFood = () => {
     try {
       // console.log('fetching foods', user?.email);
       setLoading(true);
-      const res = await axiosSecure.get(
-        'https://backendas11.vercel.app/my-foods',
-        {
-          params: { email: user?.email },
-        }
-      );
+      const res = await axiosSecure.get('/my-foods', {
+        params: { email: user?.email },
+      });
       if (res.data.success) {
         setFoods(res.data.data);
         setExpiryDate(new Date(res.data?.data[0]?.expiryDate));
@@ -53,9 +50,7 @@ const ManageMyFood = () => {
         confirmButtonText: 'Yes, delete it!',
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const res = await axiosSecure.delete(
-            `https://backendas11.vercel.app/foods/${foodId}`
-          );
+          const res = await axiosSecure.delete(`/foods/${foodId}`);
           if (res.data.success) {
             fetchFoods();
             Swal.fire({
@@ -73,23 +68,20 @@ const ManageMyFood = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const res = await axiosSecure.patch(
-        `https://backendas11.vercel.app/foods/${food._id}`,
-        {
-          foodName: data.foodName,
-          foodImage: data.foodImage,
-          pickupLocation: data.pickupLocation,
-          additionalNotes: data.additionalNotes,
-          foodStatus: food.foodStatus,
-          foodQuantity: parseInt(data.foodQuantity),
-          donator: {
-            name: food.donator.name,
-            email: food.donator.email,
-            image: food.donator.image,
-          },
-          expiryDate: expiryDate.toISOString(),
-        }
-      );
+      const res = await axiosSecure.patch(`/foods/${food._id}`, {
+        foodName: data.foodName,
+        foodImage: data.foodImage,
+        pickupLocation: data.pickupLocation,
+        additionalNotes: data.additionalNotes,
+        foodStatus: food.foodStatus,
+        foodQuantity: parseInt(data.foodQuantity),
+        donator: {
+          name: food.donator.name,
+          email: food.donator.email,
+          image: food.donator.image,
+        },
+        expiryDate: expiryDate.toISOString(),
+      });
       if (res?.data?.success) {
         const updateUi = foods.find((f) => f._id === food._id);
         if (updateUi) {

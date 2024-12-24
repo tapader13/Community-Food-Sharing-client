@@ -21,10 +21,7 @@ const AddFood = () => {
   // const [loading, setLoading] = useState(false);
   const [expiryDate, setExpiryDate] = useState(new Date());
   const addFood = async (data) => {
-    const response = await axiosSecure.post(
-      'https://backendas11.vercel.app/foods',
-      data
-    );
+    const response = await axiosSecure.post('/foods', data);
     return response.data;
   };
   const queryClient = useQueryClient();

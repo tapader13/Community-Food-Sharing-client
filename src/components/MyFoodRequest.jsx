@@ -12,12 +12,9 @@ const MyFoodRequest = () => {
   const fetchFoodRequests = async () => {
     try {
       setLoading(true);
-      const res = await axiosSecure.get(
-        'https://backendas11.vercel.app/my-food-request',
-        {
-          params: { email: user?.email },
-        }
-      );
+      const res = await axiosSecure.get('/my-food-request', {
+        params: { email: user?.email },
+      });
       if (res.data.success) {
         setRequests(res.data.data);
       }

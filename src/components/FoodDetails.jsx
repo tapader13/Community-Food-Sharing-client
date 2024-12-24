@@ -18,12 +18,9 @@ const FoodDetails = () => {
     const fetchFoodDetails = async () => {
       try {
         setLoading(true);
-        const res = await axiosSecure.get(
-          `https://backendas11.vercel.app/foods/${id}`,
-          {
-            params: { email: user?.email },
-          }
-        );
+        const res = await axiosSecure.get(`/foods/${id}`, {
+          params: { email: user?.email },
+        });
         if (res.data?.success) {
           setFood(res.data.data);
           setAdditionalNotes(res.data.data?.additionalNotes);
@@ -51,10 +48,7 @@ const FoodDetails = () => {
         expiryDate: food.expiryDate,
         additionalNotes,
       };
-      const res = await axiosSecure.post(
-        'https://backendas11.vercel.app/food/requests',
-        requestData
-      );
+      const res = await axiosSecure.post('/food/requests', requestData);
       if (res.data.success) {
         toast.success('Food requested successfully');
         setModalOpen(false);
