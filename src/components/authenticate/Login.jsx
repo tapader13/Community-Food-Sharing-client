@@ -22,7 +22,7 @@ const Login = () => {
         toast.success('Login successful');
         setTimeout(() => {
           navigate(frm, { replace: true });
-        }, 2000);
+        }, 1000);
         // navigate(frm, { replace: true });
       })
       .catch((err) => {
@@ -40,7 +40,7 @@ const Login = () => {
         toast.success('Logged in with Google');
         setTimeout(() => {
           navigate(frm, { replace: true });
-        }, 2000);
+        }, 1000);
         // navigate(frm, { replace: true });
       }
     } catch (error) {
