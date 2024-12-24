@@ -20,7 +20,10 @@ const Login = () => {
     loginUser(email, password)
       .then((user) => {
         toast.success('Login successful');
-        navigate(frm, { replace: true });
+        setTimeout(() => {
+          navigate(frm, { replace: true });
+        }, 2000);
+        // navigate(frm, { replace: true });
       })
       .catch((err) => {
         toast.error(
@@ -35,7 +38,10 @@ const Login = () => {
       const user = await googleLogin();
       if (user) {
         toast.success('Logged in with Google');
-        navigate(frm, { replace: true });
+        setTimeout(() => {
+          navigate(frm, { replace: true });
+        }, 2000);
+        // navigate(frm, { replace: true });
       }
     } catch (error) {
       toast.error('Google login failed. Please try again.');
