@@ -112,12 +112,15 @@ const AvailableFood = () => {
 
       {/* Foods Section */}
       <div
-        className={`food-grid ${
-          isThreeColumn ? 'three-columns' : 'two-columns'
-        }`}
+        // className={`food-grid ${
+        //   isThreeColumn ? 'three-columns' : 'two-columns'
+        // }`}
         // className={`grid grid-cols-1  md:grid-cols-${
         //   isThreeColumn ? 3 : 2
         // } gap-4`}
+        className={` ${
+          isThreeColumn ? 'md:grid-cols-3' : 'md:grid-cols-2'
+        } grid gap-4 grid-cols-1 `}
       >
         {foods.length > 0 ? (
           foods.map((food) => (
