@@ -21,7 +21,7 @@ const Organic = () => {
   ];
 
   return (
-    <section className='py-16 bg-white'>
+    <section className='pb-10 pt-12 bg-white'>
       <div className='w-11/12 mx-auto'>
         <div className='grid grid-cols-1 justify-between md:grid-cols-2'>
           <div className='flex  flex-col justify-center items-center'>
