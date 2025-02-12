@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
+import ToggleTheme from './ToggleTheme';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +86,9 @@ const Navbar = () => {
                 </button>
               </div>
             )}
+            <div>
+              <ToggleTheme />
+            </div>
           </div>
 
           {/* Mobile menu button */}
