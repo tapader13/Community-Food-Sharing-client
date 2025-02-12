@@ -29,16 +29,6 @@ const products = [
     notes: 'Pasta ready for donation. Expiring soon!',
     star: 4,
   },
-  {
-    img: '/imagjes.jpg',
-    name: 'Chick-pea',
-    donor: 'Sarah Brown',
-    donorPhoto: '/asset 72.png',
-    availability: 'Requested',
-    expiration: '2024-12-28',
-    notes: 'Canned chick-peas available for donation.',
-    star: 3,
-  },
 ];
 
 const Offer = () => {
@@ -48,7 +38,7 @@ const Offer = () => {
         <span className='text-green-600'>Recent</span>{' '}
         <span className='text-gray-800 dark:text-gray-200'>Donations</span>
       </h2>
-      <div className='grid grid-cols-1 gap-10 justify-between md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+      <div className='grid grid-cols-1 gap-10 justify-between md:grid-cols-2 lg:grid-cols-3 '>
         {products.map((product, index) => (
           <div
             key={index}
