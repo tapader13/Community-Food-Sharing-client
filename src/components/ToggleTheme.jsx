@@ -13,7 +13,7 @@ const ToggleTheme = () => {
   }, [theme]);
   return (
     <div
-      className='cursor-pointer text-2xl'
+      className='cursor-pointer  text-2xl'
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       {theme === 'dark' ? <BsToggle2On /> : <BsToggle2Off />}

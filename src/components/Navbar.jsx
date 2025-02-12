@@ -9,14 +9,14 @@ const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
   return (
-    <nav className='bg-white shadow-sm sticky w-full top-0 z-50'>
+    <nav className='bg-white dark:bg-black shadow-sm sticky w-full top-0 z-50'>
       <div className='w-11/12 mx-auto px-4 sm:px-6 md:px-2 lg:px-2 xl:px-8'>
         <div className='flex justify-between h-16'>
           {/* Logo */}
           <div className='flex-shrink-0 flex items-center'>
             <Link to='/' className='text-2xl font-bold'>
               <span className='text-green-600'>Food</span>
-              <span className='text-gray-800'>Share</span>
+              <span className='text-gray-800 dark:text-gray-200'>Share</span>
             </Link>
           </div>
 
@@ -24,13 +24,13 @@ const Navbar = () => {
           <div className='hidden lg:flex md:items-center xl:space-x-8'>
             <Link
               to='/'
-              className='text-gray-700 hover:text-green-600 px-3 py-2'
+              className='text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
             >
               Home
             </Link>
             <Link
               to='/available-foods'
-              className='text-gray-700 hover:text-green-600 px-3 py-2'
+              className='text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
             >
               Available Foods
             </Link>
@@ -38,19 +38,19 @@ const Navbar = () => {
               <>
                 <Link
                   to='/add-food'
-                  className='text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                 >
                   Add Food
                 </Link>
                 <Link
                   to='/manage-my-foods'
-                  className='text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                 >
                   Manage My Foods
                 </Link>
                 <Link
                   to='/my-food-request'
-                  className='text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                 >
                   My Food Request
                 </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
               <div className='flex items-center space-x-4'>
                 <Link
                   to='/login'
-                  className='text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                 >
                   Login
                 </Link>
@@ -80,22 +80,22 @@ const Navbar = () => {
                 />
                 <button
                   onClick={() => logoutUser()}
-                  className='text-gray-700 bg-red-500 px-4 py-2 rounded-lg hover:text-green-600'
+                  className='text-gray-700 dark:text-gray-300 bg-red-500 px-4 py-2 rounded-lg hover:text-green-600'
                 >
                   Logout
                 </button>
               </div>
             )}
-            <div>
+            <div className='dark:text-gray-300 text-gray-800'>
               <ToggleTheme />
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className='lg:hidden flex items-center'>
+          <div className='lg:hidden flex gap-5 items-center'>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className='text-gray-700 hover:text-green-600'
+              className='text-gray-700 dark:text-gray-300 hover:text-green-600'
             >
               {isOpen ? (
                 <X className='block h-6 w-6' />
@@ -103,6 +103,9 @@ const Navbar = () => {
                 <Menu className='block h-6 w-6' />
               )}
             </button>
+            <div className='dark:text-gray-300 text-gray-800'>
+              <ToggleTheme />
+            </div>
           </div>
         </div>
       </div>
@@ -113,14 +116,14 @@ const Navbar = () => {
           <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
             <Link
               to='/'
-              className='block text-gray-700 hover:text-green-600 px-3 py-2'
+              className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
               onClick={() => setIsOpen(false)}
             >
               Home
             </Link>
             <Link
               to='/available-foods'
-              className='block text-gray-700 hover:text-green-600 px-3 py-2'
+              className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
               onClick={() => setIsOpen(false)}
             >
               Available Foods
@@ -129,21 +132,21 @@ const Navbar = () => {
               <>
                 <Link
                   to='/add-food'
-                  className='block text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                   onClick={() => setIsOpen(false)}
                 >
                   Add Food
                 </Link>
                 <Link
                   to='/manage-my-foods'
-                  className='block text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                   onClick={() => setIsOpen(false)}
                 >
                   Manage My Foods
                 </Link>
                 <Link
                   to='/my-food-request'
-                  className='block text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                   onClick={() => setIsOpen(false)}
                 >
                   My Food Request
@@ -153,7 +156,7 @@ const Navbar = () => {
                     logoutUser();
                     setIsOpen(false);
                   }}
-                  className='block w-full bg-red-500 px-4 py-2 text-left text-gray-700 hover:text-green-600 rounded-lg'
+                  className='block w-full bg-red-500 px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:text-green-600 rounded-lg'
                 >
                   Logout
                 </button>
@@ -163,14 +166,14 @@ const Navbar = () => {
               <>
                 <Link
                   to='/login'
-                  className='block text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                   onClick={() => setIsOpen(false)}
                 >
                   Login
                 </Link>
                 <Link
                   to='/register'
-                  className='block text-gray-700 hover:text-green-600 px-3 py-2'
+                  className='block text-gray-700 dark:text-gray-300 hover:text-green-600 px-3 py-2'
                   onClick={() => setIsOpen(false)}
                 >
                   Sign Up
