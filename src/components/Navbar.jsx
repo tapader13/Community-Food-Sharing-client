@@ -86,7 +86,7 @@ const Navbar = () => {
                 </button>
               </div>
             )}
-            <div className='dark:text-gray-300 text-gray-800'>
+            <div className='dark:text-gray-300 ml-5 text-gray-800'>
               <ToggleTheme />
             </div>
           </div>

@@ -6,7 +6,7 @@ const products = [
     donorPhoto: '/asset 32.png',
     availability: 'Available',
     expiration: '2024-12-30',
-    notes: 'Freshly baked, available until December 30th!',
+    notes: 'Available until December 30th!',
     star: 4,
   },
   {
@@ -52,9 +52,9 @@ const Offer = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className='card relative p-5 rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-green-600'
+            className='card relative h-[375px] p-5 border-gray-300 rounded-lg shadow-md bg-white dark:bg-gray-800 border '
           >
-            <figure className='px-10 pt-10'>
+            <figure className='px-5 pt-5'>
               <img
                 src={product.img || '/placeholder.svg'}
                 alt={product.name}

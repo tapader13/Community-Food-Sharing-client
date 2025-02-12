@@ -45,7 +45,7 @@ const MyFoodRequest = () => {
           requests.map((request) => (
             <div
               key={request._id}
-              className='border border-gray-200 text-gray-950 dark:text-white rounded-lg p-4 shadow-md bg-white dark:bg-gray-800'
+              className='border h-[375px] border-gray-300 text-gray-950 dark:text-white rounded-lg p-4 shadow-md bg-white dark:bg-gray-800'
             >
               <img
                 src={request.foodImage}
@@ -66,13 +66,13 @@ const MyFoodRequest = () => {
                 <strong>Expire Date:</strong>{' '}
                 {new Date(request.expiryDate).toLocaleDateString()}
               </p>
-              <p className='mb-1'>
+              {/* <p className='mb-1'>
                 <strong>Request Date:</strong>{' '}
                 {new Date(request.requestDate).toLocaleDateString()}
               </p>
               <p className='mb-1'>
                 <strong>Additional Notes:</strong> {request.additionalNotes}
-              </p>
+              </p> */}
             </div>
           ))
         ) : (

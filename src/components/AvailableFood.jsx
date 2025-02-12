@@ -91,7 +91,7 @@ const AvailableFood = () => {
       <div className='flex justify-between items-center mb-4'>
         <label
           htmlFor='sort'
-          className='dark:text-gray-300 dark:text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-200 font-bold'
+          className=' dark:text-gray-300  text-gray-700  font-bold'
         >
           Sort By:
         </label>
@@ -99,7 +99,7 @@ const AvailableFood = () => {
           id='sort'
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
-          className='px-4 py-2 bg-white dark:bg-gray-800 cursor-pointer border dark:text-gray-300 dark:text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-200 border-gray-300 rounded'
+          className='px-4 py-2 bg-white dark:bg-gray-800 cursor-pointer border dark:text-gray-300  text-gray-700  border-gray-300 rounded'
         >
           <option value=''>Default (No Sorting)</option>
           <option value='expiryDate-asc'>Expiry Date (Ascending)</option>
@@ -129,7 +129,7 @@ const AvailableFood = () => {
           foods.map((food) => (
             <div
               key={food._id}
-              className='border border-gray-300 rounded-lg shadow-md p-4'
+              className='border h-[375px] border-gray-300 rounded-lg shadow-md p-4'
             >
               <img
                 src={food.foodImage}

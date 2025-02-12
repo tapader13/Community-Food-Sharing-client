@@ -27,12 +27,12 @@ const Featured = () => {
         {featuredFoods.map((food, index) => (
           <div
             key={index}
-            className='border rounded-lg shadow-md overflow-hidden bg-white relative group'
+            className='border h-[375px] border-gray-300 rounded-lg shadow-md overflow-hidden bg-white relative group'
           >
             <img
               src={food.foodImage || '/placeholder.svg'}
               alt={food.foodName}
-              className='w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110'
+              className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
             />
             <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70'></div>
             <div className='p-4 absolute bottom-0 left-0 w-full'>

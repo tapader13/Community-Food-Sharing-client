@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   Facebook,
   Twitter,
@@ -8,15 +8,33 @@ import {
   MapPin,
 } from 'lucide-react';
 import { Link } from 'react-router';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 export function Footer() {
-  const [email, setEmail] = useState('');
-
+  const Ref = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Implement newsletter subscription logic
-    // console.log('Subscribed:', email);
-    setEmail('');
+    if (Ref.current) {
+      console.log(Ref.current.from_name);
+      emailjs
+        .sendForm(
+          'service_qhettkc',
+          'template_h5sside',
+          Ref.current,
+          'fynohaGtTgGTgJvdF'
+        )
+        .then(
+          (result) => {
+            console.log('Email sent:', result.text);
+            toast.success('Subscription successful');
+          },
+          (error) => {
+            console.log('Email send error:', error);
+            toast.error('Subscription failed');
+          }
+        );
+    }
   };
 
   return (
@@ -77,26 +95,25 @@ export function Footer() {
             <ul className='space-y-2'>
               <li className='flex items-center'>
                 <Mail className='w-5 h-5 mr-2' />
-                <span>info@foodshare.com</span>
+                <span>minhajuddintapader@gmail.com</span>
               </li>
               <li className='flex items-center'>
                 <Phone className='w-5 h-5 mr-2' />
-                <span>+1 (555) 123-4567</span>
+                <span>+880 1786 224382</span>
               </li>
               <li className='flex items-center'>
                 <MapPin className='w-5 h-5 mr-2' />
-                <span>123 Food St, City, Country</span>
+                <span>123 Food St, Sylhet, Bangladesh</span>
               </li>
             </ul>
           </div>
           <div>
             <h3 className='text-lg font-semibold mb-4'>Newsletter</h3>
-            <form onSubmit={handleSubmit} className='space-y-2'>
+            <form ref={Ref} onSubmit={handleSubmit} className='space-y-2'>
               <input
                 type='email'
                 placeholder='Your email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name='email'
                 required
                 className='bg-gray-800 w-full mb-2 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600 border-gray-700 text-white'
               />
@@ -111,7 +128,7 @@ export function Footer() {
         </div>
         <div className='mt-8 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center'>
           <p className='text-gray-400'>
-            &copy; 2024 Food Share. All rights reserved.
+            &copy; {new Date().getFullYear()} Food Share. All rights reserved.
           </p>
           <div className='flex space-x-4 mt-4 sm:mt-0'>
             <a

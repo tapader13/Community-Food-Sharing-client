@@ -41,7 +41,7 @@ const Newsletter = () => {
         <form
           ref={Ref}
           onSubmit={handleSubmit}
-          className='mt-8 sm:flex justify-center'
+          className='mt-8 sm:flex px-10 sm:px-0 justify-center'
         >
           <label htmlFor='email-address' className='sr-only'>
             Email address
