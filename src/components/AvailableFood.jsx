@@ -62,7 +62,7 @@ const AvailableFood = () => {
     queryFn: () => fetchFoods(sortOption),
   });
   return (
-    <div className='w-11/12 mx-auto p-4'>
+    <div className='w-11/12 mx-auto py-4'>
       <h2 className='text-2xl font-bold text-center mb-3'>
         {' '}
         <span className='text-green-600'>Available</span> Foods
@@ -74,7 +74,7 @@ const AvailableFood = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder='Search by food name'
-            className='px-4 py-2 border focus:ring-2  focus:outline-none focus:ring-green-600 border-gray-300 rounded'
+            className='px-4 py-2 border focus:ring-2  focus:outline-none bg-white text-gray-950 dark:text-white dark:bg-gray-800 focus:ring-green-600 border-gray-300 rounded'
           />
         </div>
         <div className=''>
@@ -89,14 +89,17 @@ const AvailableFood = () => {
 
       {/* Sort Section */}
       <div className='flex justify-between items-center mb-4'>
-        <label htmlFor='sort' className='text-gray-700 font-bold'>
+        <label
+          htmlFor='sort'
+          className='dark:text-gray-300 dark:text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-200 font-bold'
+        >
           Sort By:
         </label>
         <select
           id='sort'
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
-          className='px-4 py-2 cursor-pointer border border-gray-300 rounded'
+          className='px-4 py-2 bg-white dark:bg-gray-800 cursor-pointer border dark:text-gray-300 dark:text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-200 border-gray-300 rounded'
         >
           <option value=''>Default (No Sorting)</option>
           <option value='expiryDate-asc'>Expiry Date (Ascending)</option>
@@ -133,9 +136,13 @@ const AvailableFood = () => {
                 alt={food.foodName}
                 className={`w-full h-48 object-cover rounded-md mb-4`}
               />
-              <h3 className='text-lg font-bold'>{food.foodName}</h3>
-              <p className='text-gray-700'>Quantity: {food.foodQuantity}</p>
-              <p className='text-gray-700'>
+              <h3 className='text-lg text-gray-950 dark:text-white font-bold'>
+                {food.foodName}
+              </h3>
+              <p className='dark:text-gray-300  text-gray-700'>
+                Quantity: {food.foodQuantity}
+              </p>
+              <p className=' dark:text-gray-300 text-gray-700'>
                 Expiry Date: {new Date(food.expiryDate).toLocaleDateString()}
               </p>
               <button
