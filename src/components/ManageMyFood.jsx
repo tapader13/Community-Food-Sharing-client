@@ -109,7 +109,7 @@ const ManageMyFood = () => {
   }, [food]);
   return (
     <div className='w-11/12 mx-auto sm:p-4'>
-      <h2 className='text-2xl font-bold text-center mb-6'>
+      <h2 className='text-2xl font-bold text-gray-950 dark:text-white text-center mb-6'>
         <span className='text-green-600'>Manage</span> My Foods
       </h2>
       {loading ? (
@@ -117,7 +117,7 @@ const ManageMyFood = () => {
       ) : (
         foods.length > 0 && (
           <div className='overflow-x-auto'>
-            <table className='table-auto  w-full border-collapse border border-gray-200'>
+            <table className='table-auto text-gray-950 dark:text-white  w-full border-collapse border border-gray-200'>
               <thead>
                 <tr>
                   <th className='border border-gray-300 px-4 py-2'>Name</th>

@@ -37,7 +37,7 @@ const MyFoodRequest = () => {
 
   return (
     <div className='w-11/12 mx-auto p-4'>
-      <h2 className='text-2xl font-bold text-center mb-6'>
+      <h2 className='text-2xl text-gray-950 dark:text-white font-bold text-center mb-6'>
         <span className='text-green-600'>My</span> Food Requests
       </h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -45,7 +45,7 @@ const MyFoodRequest = () => {
           requests.map((request) => (
             <div
               key={request._id}
-              className='border border-gray-200 rounded-lg p-4 shadow-md bg-white'
+              className='border border-gray-200 text-gray-950 dark:text-white rounded-lg p-4 shadow-md bg-white dark:bg-gray-800'
             >
               <img
                 src={request.foodImage}
