@@ -64,29 +64,41 @@ const FoodDetails = () => {
   }
 
   return (
-    <div className='w-11/12 mx-auto p-4'>
-      <h2 className='text-3xl font-bold text-center mb-6'>{food.foodName}</h2>
+    <div className='w-11/12 mx-auto py-4'>
+      <h2 className='text-3xl text-gray-950 dark:text-white font-bold text-center mb-6'>
+        {food.foodName}
+      </h2>
       <div className='flex flex-col items-center'>
         <img
           src={food.foodImage}
           alt={food.foodName}
           className='w-96 rounded mb-4'
         />
-        <p>
-          <strong>Quantity:</strong> {food.foodQuantity}
+        <p className='text-gray-700 dark:text-gray-300'>
+          <strong className='text-gray-950 dark:text-white'>Quantity:</strong>{' '}
+          {food.foodQuantity}
         </p>
-        <p>
-          <strong>Pickup Location:</strong> {food.pickupLocation}
+        <p className='text-gray-700 dark:text-gray-300'>
+          <strong className='text-gray-950 dark:text-white'>
+            Pickup Location:
+          </strong>{' '}
+          {food.pickupLocation}
         </p>
-        <p>
-          <strong>Donar Name:</strong> {food.donator?.name}
+        <p className='text-gray-700 dark:text-gray-300'>
+          <strong className='text-gray-950 dark:text-white'>Donar Name:</strong>{' '}
+          {food.donator?.name}
         </p>
-        <p>
-          <strong>Expiry Date:</strong>{' '}
+        <p className='text-gray-700 dark:text-gray-300'>
+          <strong className='text-gray-950 dark:text-white'>
+            Expiry Date:
+          </strong>{' '}
           {new Date(food.expiryDate).toLocaleString()}
         </p>
-        <p>
-          <strong>Additional Notes:</strong> {food.additionalNotes}
+        <p className='text-gray-700 dark:text-gray-300'>
+          <strong className='text-gray-950 dark:text-white'>
+            Additional Notes:
+          </strong>{' '}
+          {food.additionalNotes}
         </p>
         <button
           onClick={() => setModalOpen(true)}
@@ -99,7 +111,7 @@ const FoodDetails = () => {
       {/* Request Modal */}
       {modalOpen && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center'>
-          <div className='bg-white p-6 rounded h-96 md:h-[460px] lg:h-[510px] xl:h-auto shadow-lg max-w-[400px] sm:max-w-md w-full overflow-y-auto'>
+          <div className='bg-white text-gray-950 dark:text-white dark:bg-gray-700 p-6 rounded h-96 md:h-[460px] lg:h-[510px] xl:h-auto shadow-lg max-w-[400px] sm:max-w-md w-full overflow-y-auto'>
             <h3 className='text-xl font-bold mb-4'>Request Food</h3>
             <div className='space-y-2'>
               <p>
@@ -146,14 +158,14 @@ const FoodDetails = () => {
                   id='additionalNotes'
                   value={additionalNotes}
                   onChange={(e) => setAdditionalNotes(e.target.value)}
-                  className='w-full border px-2 py-1'
+                  className='w-full border px-2 py-1 bg-white dark:bg-gray-800 '
                 ></textarea>
               </div>
             </div>
             <div className='mt-4 flex justify-end'>
               <button
                 onClick={() => setModalOpen(false)}
-                className='px-4 py-2 bg-gray-300 rounded mr-2'
+                className='px-4 py-2 bg-gray-300 dark:bg-gray-600 rounded mr-2'
               >
                 Cancel
               </button>
