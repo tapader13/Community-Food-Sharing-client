@@ -46,13 +46,13 @@ const Offer = () => {
     <div className='w-11/12 mx-auto'>
       <h2 className='text-3xl font-bold  mb-8'>
         <span className='text-green-600'>Recent</span>{' '}
-        <span className='text-black'>Donations</span>
+        <span className='text-gray-800 dark:text-gray-200'>Donations</span>
       </h2>
       <div className='grid grid-cols-1 gap-10 justify-between md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {products.map((product, index) => (
           <div
             key={index}
-            className='card relative p-5 rounded-lg shadow-lg bg-white border border-green-600'
+            className='card relative p-5 rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-green-600'
           >
             <figure className='px-10 pt-10'>
               <img
@@ -66,9 +66,13 @@ const Offer = () => {
             </div>
             <div className='flex flex-col items-center justify-center mt-4'>
               <div className='flex items-center gap-3'>
-                <h2 className='text-black font-bold text-xl'>{product.name}</h2>
+                <h2 className='text-gray-950 dark:text-white font-bold text-xl'>
+                  {product.name}
+                </h2>
               </div>
-              <p className='text-sm text-gray-600 mt-2'>{product.notes}</p>
+              <p className='text-sm text-gray-600 dark:text-gray-300 mt-2'>
+                {product.notes}
+              </p>
 
               <div className='flex items-center gap-3 mt-2'>
                 <img
@@ -76,11 +80,11 @@ const Offer = () => {
                   alt={product.donor}
                   className='w-8 h-8 rounded-full'
                 />
-                <p className='text-sm text-black font-semibold'>
+                <p className='text-sm text-gray-950 dark:text-white font-semibold'>
                   {product.donor}
                 </p>
               </div>
-              <p className='text-sm text-gray-600 mt-1'>
+              <p className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
                 Expires: {product.expiration}
               </p>
             </div>

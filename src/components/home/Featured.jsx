@@ -18,10 +18,10 @@ const Featured = () => {
   }, []);
 
   return (
-    <div className='w-11/12 mt-6 mx-auto p-4'>
+    <div className='w-11/12 mt-6 mx-auto py-4'>
       <h2 className='text-3xl mt-6 font-bold text-left mb-6'>
         <span className='text-green-600'>Featured</span>{' '}
-        <span className='text-gray-800'>Foods</span>
+        <span className='text-gray-800 dark:text-gray-200'>Foods</span>
       </h2>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {featuredFoods.map((food, index) => (

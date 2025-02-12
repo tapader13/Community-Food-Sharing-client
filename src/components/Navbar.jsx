@@ -9,8 +9,8 @@ const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
   return (
-    <nav className='bg-white dark:bg-black shadow-sm sticky w-full top-0 z-50'>
-      <div className='w-11/12 mx-auto px-4 sm:px-6 md:px-2 lg:px-2 xl:px-8'>
+    <nav className='bg-white dark:bg-gray-950 shadow-sm sticky w-full top-0 z-50'>
+      <div className='w-11/12 mx-auto '>
         <div className='flex justify-between h-16'>
           {/* Logo */}
           <div className='flex-shrink-0 flex items-center'>

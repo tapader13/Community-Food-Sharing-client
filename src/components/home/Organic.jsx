@@ -21,7 +21,7 @@ const Organic = () => {
   ];
 
   return (
-    <section className='pb-10 pt-12 bg-white'>
+    <section className='pb-10 pt-12 '>
       <div className='w-11/12 mx-auto'>
         <div className='grid grid-cols-1 justify-between md:grid-cols-2'>
           <div className='flex  flex-col justify-center items-center'>
@@ -35,16 +35,27 @@ const Organic = () => {
                   className={`w-3 mt-8 h-3 rounded-[50%] flex items-center justify-center `}
                 ></div>
                 <div className='p-6'>
-                  <h3 className='text-2xl font-bold text-[#244262] group-hover:text-green-600 transition-colors duration-300 mb-4'>
+                  <h3 className='text-2xl font-bold text-[#244262] dark:text-gray-200 group-hover:text-green-600 transition-colors duration-300 mb-4'>
                     {feature.title}
                   </h3>
-                  <p className='text-gray-600'>{feature.description}</p>
+                  <p className='text-gray-600 dark:text-gray-400'>
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
           <div className='flex justify-end'>
-            <img className='' src='/asset 27.jpeg' alt='' />
+            <img
+              className='block dark:hidden'
+              src='/asset 27.jpeg'
+              alt='Light Mode'
+            />
+            <img
+              className='hidden dark:block'
+              src='/asset 27-removebg-preview (1).jpg'
+              alt='Dark Mode'
+            />
           </div>
         </div>
       </div>

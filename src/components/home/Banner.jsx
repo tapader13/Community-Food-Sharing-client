@@ -53,7 +53,7 @@ const Banner = () => {
             <div className='absolute inset-0 bg-black bg-opacity-40'></div>{' '}
             <div className='absolute inset-0 p-2 flex flex-col sm:p-10 text-white text-center'>
               {' '}
-              <div className='w-full flex justify-between items-start sm:px-10'>
+              <div className='w-full flex justify-between items-start sm:px-6'>
                 {' '}
                 <p className='sm:text-2xl text-sm abril font-semibold'>
                   {slide.discount}

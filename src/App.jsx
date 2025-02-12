@@ -65,14 +65,14 @@ const router = createBrowserRouter([
 function App() {
   const queryClient = new QueryClient();
   return (
-    <>
+    <div className='bg-white dark:bg-gray-950'>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <RouterProvider router={router} />
           <Toaster />
         </AuthProvider>
       </QueryClientProvider>
-    </>
+    </div>
   );
 }
 
