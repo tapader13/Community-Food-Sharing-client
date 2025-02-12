@@ -78,7 +78,7 @@ const AddFood = () => {
     <div className='w-11/12 mx-auto p-4'>
       <h2 className='text-2xl font-bold text-center mb-6'>
         <span className='text-green-600'>Add</span>{' '}
-        <span className='text-gray-800'>Food</span>
+        <span className='text-gray-800 dark:text-white'>Food</span>
       </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -88,7 +88,7 @@ const AddFood = () => {
         <div>
           <label
             htmlFor='foodName'
-            className='block text-sm font-medium text-gray-700'
+            className='block text-sm font-medium dark:text-gray-300 text-gray-700'
           >
             Food Name
           </label>
@@ -96,7 +96,7 @@ const AddFood = () => {
             type='text'
             id='foodName'
             {...register('foodName', { required: 'Food name is required' })}
-            className='w-full px-4 py-2 border border-gray-300 rounded'
+            className='w-full px-4 py-2 text-gray-950 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 rounded'
           />
           {errors.foodName && (
             <p className='text-red-500 text-xs mt-1'>
@@ -109,7 +109,7 @@ const AddFood = () => {
         <div>
           <label
             htmlFor='foodImage'
-            className='block text-sm font-medium text-gray-700'
+            className='block text-sm font-medium dark:text-gray-300 text-gray-700'
           >
             Food Image URL
           </label>
@@ -124,7 +124,7 @@ const AddFood = () => {
                 message: 'Invalid URL',
               },
             })}
-            className='w-full px-4 py-2 border border-gray-300 rounded'
+            className='w-full px-4 text-gray-950 dark:text-white bg-white dark:bg-gray-800 py-2 border border-gray-300 rounded'
           />
           {errors.foodImage && (
             <p className='text-red-500 text-xs mt-1'>
@@ -137,7 +137,7 @@ const AddFood = () => {
         <div>
           <label
             htmlFor='foodQuantity'
-            className='block text-sm font-medium text-gray-700'
+            className='block text-sm font-medium dark:text-gray-300 text-gray-700'
           >
             Food Quantity
           </label>
@@ -148,7 +148,7 @@ const AddFood = () => {
               required: 'Food quantity is required',
               min: 1,
             })}
-            className='w-full px-4 py-2 border border-gray-300 rounded'
+            className='w-full px-4 text-gray-950 dark:text-white bg-white dark:bg-gray-800 py-2 border border-gray-300 rounded'
           />
           {errors.foodQuantity && (
             <p className='text-red-500 text-xs mt-1'>
@@ -161,7 +161,7 @@ const AddFood = () => {
         <div>
           <label
             htmlFor='pickupLocation'
-            className='block text-sm font-medium text-gray-700'
+            className='block text-sm font-medium dark:text-gray-300 text-gray-700'
           >
             Pickup Location
           </label>
@@ -171,7 +171,7 @@ const AddFood = () => {
             {...register('pickupLocation', {
               required: 'Pickup location is required',
             })}
-            className='w-full px-4 py-2 border border-gray-300 rounded'
+            className='w-full px-4 text-gray-950 dark:text-white bg-white dark:bg-gray-800 py-2 border border-gray-300 rounded'
           />
           {errors.pickupLocation && (
             <p className='text-red-500 text-xs mt-1'>
@@ -184,7 +184,7 @@ const AddFood = () => {
         <div>
           <label
             htmlFor='expiryDate'
-            className='block text-sm font-medium text-gray-700'
+            className='block text-sm font-medium dark:text-gray-300 text-gray-700'
           >
             Expired Date
           </label>
@@ -194,7 +194,7 @@ const AddFood = () => {
             minDate={new Date()}
             // showTimeSelect
             dateFormat='yyyy/MM/dd'
-            className='w-full px-4 py-2 border border-gray-300 rounded'
+            className='w-full px-4 py-2 text-gray-950 dark:text-white border bg-white dark:bg-gray-800 border-gray-300 rounded'
           />
           {errors.expiryDate && (
             <p className='text-red-500 text-xs mt-1'>
@@ -207,7 +207,7 @@ const AddFood = () => {
         <div>
           <label
             htmlFor='additionalNotes'
-            className='block text-sm font-medium text-gray-700'
+            className='block text-sm font-medium dark:text-gray-300 text-gray-700'
           >
             Additional Notes
           </label>
@@ -216,7 +216,7 @@ const AddFood = () => {
             {...register('additionalNotes', {
               required: 'Additional notes is required',
             })}
-            className='w-full px-4 py-2 border border-gray-300 rounded'
+            className='w-full px-4 py-2 border bg-white dark:bg-gray-800 text-gray-950 dark:text-white border-gray-300 rounded'
           ></textarea>
         </div>
 
