@@ -167,7 +167,7 @@ const ManageMyFood = () => {
       {/* modal */}
       {modalOpen && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center'>
-          <div className='bg-white p-6 h-96 md:h-[460px] lg:h-[510px] xl:h-auto rounded shadow-lg max-w-[400px] sm:max-w-md w-full overflow-y-auto'>
+          <div className='bg-white  dark:bg-gray-700 p-6 h-96 md:h-[460px] lg:h-[510px] xl:h-auto rounded shadow-lg max-w-[400px] sm:max-w-md w-full overflow-y-auto'>
             <h3 className='text-xl font-bold mb-4'>Update Food Info</h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -177,7 +177,7 @@ const ManageMyFood = () => {
               <div>
                 <label
                   htmlFor='foodName'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium dark:text-gray-300 text-gray-700'
                 >
                   Food Name
                 </label>
@@ -201,7 +201,7 @@ const ManageMyFood = () => {
               <div>
                 <label
                   htmlFor='foodImage'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium dark:text-gray-300 text-gray-700'
                 >
                   Food Image URL
                 </label>
@@ -230,7 +230,7 @@ const ManageMyFood = () => {
               <div>
                 <label
                   htmlFor='foodQuantity'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium dark:text-gray-300 text-gray-700'
                 >
                   Food Quantity
                 </label>
@@ -255,7 +255,7 @@ const ManageMyFood = () => {
               <div>
                 <label
                   htmlFor='pickupLocation'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium dark:text-gray-300 text-gray-700'
                 >
                   Pickup Location
                 </label>
@@ -279,7 +279,7 @@ const ManageMyFood = () => {
               <div>
                 <label
                   htmlFor='expiryDate'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium dark:text-gray-300 text-gray-700'
                 >
                   Expired Date
                 </label>
@@ -303,7 +303,7 @@ const ManageMyFood = () => {
               <div>
                 <label
                   htmlFor='additionalNotes'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium dark:text-gray-300 text-gray-700'
                 >
                   Additional Notes
                 </label>
